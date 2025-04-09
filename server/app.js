@@ -3,7 +3,7 @@ import { config } from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { connectDB } from "./database/db.js";
-import { errorMiddleware } from "./middlewares/errormiddlewares.js";
+import { errorMiddleware } from "./middlewares/errorMiddlewares.js";
 
 export const app = express();
 
