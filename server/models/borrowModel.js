@@ -25,6 +25,10 @@ const borrowSchema = new mongoose.Schema({
     ref: "Book",
     required: true,
   },
+  dueDate: {
+    type: Date,
+    required: true,
+  },
   returnDate: {
     type: Date,
     default: null,
@@ -36,6 +40,10 @@ const borrowSchema = new mongoose.Schema({
   notified: {
     type: Boolean,
     default: false,
+  },
+  borrowDate: {
+    type: Date,
+    default: Date.now,
   },
 
 },

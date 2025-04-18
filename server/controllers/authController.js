@@ -1,9 +1,9 @@
+import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import ErrorHandler from "../middlewares/errorMiddlewares.js";
 import { User } from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import { sendVerificationCode } from "../utils/sendVerificationCode.js";
-import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import { sendToken } from "../utils/sendToken.js";
 import { generatePasswordResetEmailTemplate } from "../utils/emailTemplates.js";
 import { sendEmail } from "../utils/sendEmail.js";
