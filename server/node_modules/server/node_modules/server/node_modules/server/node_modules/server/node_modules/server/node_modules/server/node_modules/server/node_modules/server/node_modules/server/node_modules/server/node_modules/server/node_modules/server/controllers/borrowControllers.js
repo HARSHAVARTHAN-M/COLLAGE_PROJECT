@@ -4,6 +4,7 @@ import { Borrow } from "../models/borrowModel.js";
 import { Book } from "../models/bookModel.js";
 import { User } from "../models/userModel.js";
 import { caculateFine } from "../utils/fineCalculator.js";
+import { blockchainService } from '../services/blockchainService.js';
 
 export const recordBorrowedBook = catchAsyncErrors(async (req, res, next) => {
   const { id } = req.params;
@@ -49,6 +50,9 @@ export const recordBorrowedBook = catchAsyncErrors(async (req, res, next) => {
     dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     price: book.price,
   });
+
+  // Add blockchain record after successful borrow
+  await blockchainService.recordAction(user._id.toString(), book._id.toString(), 'BORROW');
 
   res.status(200).json({
     success: true,
@@ -101,6 +105,9 @@ export const returnBorrowBook = catchAsyncErrors(async (req, res, next) => {
   borrow.fine = fine;
 
   await borrow.save();
+
+  // Add blockchain record after successful return
+  await blockchainService.recordAction(user._id.toString(), bookId, 'RETURN');
 
   res.status(200).json({
     success: true,
