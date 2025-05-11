@@ -1,9 +1,0 @@
-{
-  "watch": ["server.js", "controllers/", "models/", "routes/", "middlewares/", "utils/"],
-  "ext": "js,json",
-  "ignore": ["node_modules/", "test/"],
-  "exec": "node server.js",
-  "events": {
-    "restart": "echo \"[nodemon] App crashed - restarting...\""
-  }
-}
